@@ -1,33 +1,24 @@
 import { useState } from "react"
 
-const TaskForm = (props) => {
+const EditForm = (props)=>{
+    console.log(props)
 
-    const {closeForm , createTodo} = props
-    const [title , setTitle] = useState('')
-    const [description , setdescription] = useState('')
-    const [date , setDate] = useState('')
-    const [priority , setPriority] = useState('High')
-    const [error , setErrorMsg] = useState(false)
+    const {todo} = props
 
-    const onFormSubmit = (e)=>{
-        e.preventDefault();
-        console.log(title , description , date , priority)
-        if(!title && !description && !date){
-            setErrorMsg(true)
-        }else{       
-            const todos = {
-                title , description ,date , priority  , isComplete:false 
-            }     
-            createTodo(todos);
-        }
+    const {title , decription , isComplete , priority , date } = todo
 
+    const [titleinput , setTitle] = useState(title)
+    const [descInut , setdescription] = useState(title)
+    const [dateInput , setDate] = useState(title)
+    const [priorityInput , setPriority] = useState(title)
+    const [error , setError] = useState(false)
+    const onFormSubmit = e=>{
+        e.preventDefault()
     }
 
-    return <div className="flex justify-center ">
-        
-        <div className="h-[100vh] fixed top-0 w-full bg-[black]/35 pb-10" onClick={()=>{
-            closeForm()}} ></div>
-    <div className="fixed flex justify-center " >
+    
+    return <><div className="h-[100vh] fixed top-0 w-full bg-[black]/35 pb-10" ></div>
+    <div className="fixed flex justify-center items-center " >
             <form className="flex items-centerjustify-center rounded-lg shadow-xl w-[350px]  md:w-[400px] p-6 px-5 pl-10 bg-[white] flex-col" onSubmit={onFormSubmit}>
                 <div className="mb-4">
                     <label htmlFor="title" className="text-lg text-[#576474]">Title</label> <br />
@@ -57,8 +48,7 @@ const TaskForm = (props) => {
 
   
         </div>
-       
-</div>
+        </>
 }
 
-export default TaskForm
+export default EditForm
